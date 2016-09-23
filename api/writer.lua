@@ -21,8 +21,10 @@ function handle(r)
                         pad = js.pad,
                         color = js.color or "rgba(0,0,0,1)",
                         fill = js.fill or "rgba(0,0,0,0)",
+                        width = js.width or 1,
                         tool = "pencil",
-                        path = js.path or {}
+                        path = js.path or {},
+                        timestamp = r.clock()
                     }
                     elastic.index(r, nil, 'draw', doc)
                     r:wswrite(JSON.encode{okay = true, message = "command saved"})

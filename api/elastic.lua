@@ -21,7 +21,7 @@ local http = require 'socket.http'
 local ltn12 = require("ltn12")
 local JSON = require 'cjson'
 local config = {
-    es_url = 'http://127.0.0.1/doodlepad/'
+    es_url = 'http://127.0.0.1:9200/doodlepad/'
 }
 
 local default_doc = "pad"

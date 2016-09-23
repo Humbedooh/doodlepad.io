@@ -103,7 +103,7 @@ initCanvas = () ->
     
 setColor = (picker) ->
     get('color').value = picker.toHEXString()
-    a = picker.toRGBString()
+    a = picker.toRGBString().rgb
     lineColor = "rgba(#{a[0]}, #{a[1]}, #{a[2]}, 1)"
     console.log(lineColor)
     

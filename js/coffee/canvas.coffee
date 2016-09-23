@@ -31,7 +31,7 @@ pushPaths = () ->
     path: dataPaths,
     pad: 'default'
   }
-  ws.write(JSON.stringify(js))
+  ws.send(JSON.stringify(js))
   
   dataPaths = []
 

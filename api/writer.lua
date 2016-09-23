@@ -18,6 +18,8 @@ function handle(r)
             
             -- execute command
             if js and js.command then
+                js.pad = js.pad or 'default'
+                
                 if js.command == 'draw' and js.pad then
                     local doc = {
                         pad = js.pad,

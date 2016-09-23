@@ -9,6 +9,10 @@ document.body.onmouseup = (e) ->
     draw()
     paths = []
 
+doodlepad_pid = location.search.substr(1)
+if doodlepad_pid.length < 2
+    doodlepad_pid = parseInt(Math.random() * 9999999).toString(16)
+    
 canvas = null
 ctx = null
 lineWidth = 1.25
@@ -29,7 +33,7 @@ pushPaths = () ->
     color: lineColor,
     type: 'pencil',
     path: dataPaths,
-    pad: 'default'
+    pad: doodlepad_pid
   }
   dp = JSON.stringify(js)
   dataPaths = []

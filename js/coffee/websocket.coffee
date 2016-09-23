@@ -28,6 +28,9 @@ ws.onmessage = (event) ->
             pencil(msg)
 
 fetchNews = () ->
-    ws.send('{"command": "fetch"}')
+    ws.send(JSON.stringify({
+        command: 'fetch',
+        pad: doodlepad_pid
+    }))
     
 window.setInterval(fetchNews, 2000)

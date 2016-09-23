@@ -100,3 +100,9 @@ initCanvas = () ->
     canvas = get('doodlecanvas')
     ctx = canvas.getContext("2d")
     canvas.addEventListener('mousemove', move)
+    
+setColor = (picker) ->
+    get('color').value = picker.toHEXString()
+    a = picker.toRGBString()
+    lineColor = "rgba(#{a[0]}, #{a[1]}, #{a[2]}, 1)"
+    

@@ -34,6 +34,7 @@ function handle(r)
                     elastic.index(r, nil, 'draw', doc)
                     r:wswrite(JSON.encode{okay = true, message = "command saved"})
                 end
+                
                 if js.command == 'fetch' then
                     local now = r.clock()
                     query = {
@@ -48,7 +49,7 @@ function handle(r)
                                         },
                                         {
                                             range = {
-                                                    timestap = {
+                                                    timestamp = {
                                                         from = last,
                                                         to = now
                                                         }

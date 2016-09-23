@@ -57,10 +57,12 @@ pushPaths = function() {
     path: dataPaths,
     pad: doodlepad_pid
   };
-  dp = JSON.stringify(js);
-  dataPaths = [];
-  ws.send(dp);
-  return console.log(dp);
+  if (dataPaths.length > 0) {
+    dp = JSON.stringify(js);
+    dataPaths = [];
+    ws.send(dp);
+  }
+  return pathPushTime = now;
 };
 
 pencil = function(cmd) {
@@ -158,6 +160,7 @@ initCanvas = function() {
 
 setColor = function(picker) {
   var a, b, g, r;
+  pushPaths();
   get('color').value = picker.toHEXString();
   a = picker.rgb;
   r = parseInt(a[0]);

@@ -37,10 +37,11 @@ pushPaths = () ->
     path: dataPaths,
     pad: doodlepad_pid
   }
-  dp = JSON.stringify(js)
-  dataPaths = []
-  ws.send(dp)
-  console.log(dp)
+  if dataPaths.length > 0
+    dp = JSON.stringify(js)
+    dataPaths = []
+    ws.send(dp)
+  pathPushTime = now
 
 
 pencil = (cmd) ->
@@ -106,6 +107,7 @@ initCanvas = () ->
     canvas.addEventListener('mousemove', move)
     
 setColor = (picker) ->
+    pushPaths()
     get('color').value = picker.toHEXString()
     a = picker.rgb
     r = parseInt(a[0])

@@ -26,6 +26,7 @@ ws.onmessage = (event) ->
     if msg.command == 'draw'
         if msg.tool == 'pencil'
             console.log("Got foreign pencil command")
+            memory.push(event.data)
             pencil(msg)
 
 fetchNews = () ->

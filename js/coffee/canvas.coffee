@@ -25,6 +25,7 @@ drawing = false
 paths = []
 pathPushTime = new Date().getTime()
 lastDraw = 0
+memory = []
 
 dataPaths = []
 
@@ -35,11 +36,13 @@ pushPaths = () ->
     color: lineColor,
     width: lineWidth,
     type: 'pencil',
+    tool: 'pencil'
     path: dataPaths,
     pad: doodlepad_pid
   }
   if dataPaths.length > 0
     dp = JSON.stringify(js)
+    memory.push(dp)
     dataPaths = []
     ws.send(dp)
   pathPushTime = new Date().getTime()
@@ -103,14 +106,25 @@ move = (e) ->
   else
     paths = []
 
-initCanvas = () ->
+
+sizeCanvas = () ->
     canvas = get('doodlecanvas')
     height = parseInt(window.innerHeight - 240)
     width = height * 2
     canvas.setAttribute("width", width)
     canvas.setAttribute("height", height)
+    
+    ## Redraw
+    for mem in memory
+        pencil(JSON.parse(mem))
+    
+initCanvas = () ->
+    canvas = get('doodlecanvas')
+    window.onresize = sizeCanvas
     ctx = canvas.getContext("2d")
     canvas.addEventListener('mousemove', move)
+    sizeCanvas()
+    
     
 setColor = (picker) ->
     pushPaths()

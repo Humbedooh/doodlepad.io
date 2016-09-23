@@ -30,7 +30,7 @@ ctx = null;
 
 lineWidth = 1.25;
 
-lineColor = "rgba(0,0,0,1)";
+lineColor = "rgba(100,0,0,1)";
 
 prevX = 0;
 

@@ -17,7 +17,7 @@ if doodlepad_pid.length < 2
 canvas = null
 ctx = null
 lineWidth = 1.25
-lineColor = "rgba(0,0,0,1)"
+lineColor = "rgba(100,0,0,1)"
 prevX = 0
 prevY = 0
 threshold = 0.0075

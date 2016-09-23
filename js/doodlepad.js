@@ -30,7 +30,7 @@ ctx = null;
 
 lineWidth = 1.25;
 
-lineColor = "rgba(100,0,0,1)";
+lineColor = "rgba(0,0,0,1)";
 
 prevX = 0;
 
@@ -66,6 +66,7 @@ pencil = function(cmd) {
   var c, first, j, len, path, ref, results;
   ctx.lineWidth = cmd.width;
   ctx.fillStyle = cmd.fill;
+  ctx.strokeStyle = cmd.color;
   ref = cmd.path;
   results = [];
   for (j = 0, len = ref.length; j < len; j++) {
@@ -94,7 +95,7 @@ pencil = function(cmd) {
 draw = function() {
   var c, first, j, len, now, path, ppath;
   ctx.lineWidth = lineWidth;
-  ctx.fillStyle = lineColor;
+  ctx.strokeStyle = lineColor;
   if (paths.length > 1) {
     first = paths.shift();
     c = canvas.getBoundingClientRect();

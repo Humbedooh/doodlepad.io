@@ -56,7 +56,7 @@ pushPaths = function() {
 };
 
 pencil = function(cmd) {
-  var c, first, j, len, path, ppath, ref, results;
+  var c, first, j, len, path, ref, results;
   ctx.lineWidth = cmd.width;
   ctx.fillStyle = cmd.fill;
   ref = cmd.path;
@@ -66,7 +66,6 @@ pencil = function(cmd) {
     if (paths.length > 1) {
       first = paths.shift();
       c = canvas.getBoundingClientRect();
-      ppath = [first];
       ctx.moveTo(first.x * c.width, first.y * c.height);
       results.push((function() {
         var len1, m, results1;

@@ -44,7 +44,6 @@ pencil = (cmd) ->
     if paths.length > 1
       first = paths.shift()
       c = canvas.getBoundingClientRect()
-      ppath = [first]
       ctx.moveTo(first.x*c.width, first.y*c.height)
       for path in paths
         ctx.lineTo(path.x*c.width, path.y*c.height)

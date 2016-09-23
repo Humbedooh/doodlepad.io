@@ -158,8 +158,7 @@ move = function(e) {
 initCanvas = function() {
   var height, width;
   canvas = get('doodlecanvas');
-  width = window.innerWidth - 100;
-  height = parseInt(width / 2);
+  height = parseInt(window.innerHeight - 240);
   width = height * 2;
   canvas.setAttribute("width", width);
   canvas.setAttribute("height", height);

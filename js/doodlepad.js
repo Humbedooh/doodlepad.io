@@ -36,7 +36,7 @@ prevX = 0;
 
 prevY = 0;
 
-threshold = 0.0075;
+threshold = 0.005;
 
 drawing = false;
 

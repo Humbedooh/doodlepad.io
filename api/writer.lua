@@ -8,6 +8,7 @@ function handle(r)
         r:wswrite(JSON.encode({okay = true}))
         local wid = r:sha1(math.random(1,99999999) .. r.clock() .. r.useragent_ip)
         local last = 0
+        local step = 0
         
         while true do
             -- Receive a line (frame) from the client:
@@ -29,9 +30,11 @@ function handle(r)
                         tool = "pencil",
                         path = js.path or {},
                         timestamp = r.clock(),
-                        writer = wid
+                        writer = wid,
+                        step = step
                     }
                     elastic.index(r, nil, 'draw', doc)
+                    step = step + 1
                     r:wswrite(JSON.encode{okay = true, message = "command saved"})
                 end
                 
@@ -66,7 +69,8 @@ function handle(r)
                                 }
                             },
                         sort = {
-                            { timestamp = 'asc' }
+                            { timestamp = 'asc' },
+                            { step = 'asc' }
                         }
                     }
                     last = now

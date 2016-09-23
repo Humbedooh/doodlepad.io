@@ -72,6 +72,7 @@ pencil = function(cmd) {
   for (j = 0, len = ref.length; j < len; j++) {
     paths = ref[j];
     if (paths.length > 1) {
+      ctx.beginPath();
       first = paths.shift();
       c = canvas.getBoundingClientRect();
       ctx.moveTo(first.x * c.width, first.y * c.height);
@@ -97,6 +98,7 @@ draw = function() {
   ctx.lineWidth = lineWidth;
   ctx.strokeStyle = lineColor;
   if (paths.length > 1) {
+    ctx.beginPath();
     first = paths.shift();
     c = canvas.getBoundingClientRect();
     ppath = [first];

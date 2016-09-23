@@ -48,6 +48,7 @@ pencil = (cmd) ->
   ctx.strokeStyle = cmd.color
   for paths in cmd.path
     if paths.length > 1
+      ctx.beginPath()
       first = paths.shift()
       c = canvas.getBoundingClientRect()
       ctx.moveTo(first.x*c.width, first.y*c.height)
@@ -60,6 +61,7 @@ draw = () ->
   ctx.lineWidth = lineWidth
   ctx.strokeStyle = lineColor
   if paths.length > 1
+    ctx.beginPath()
     first = paths.shift()
     c = canvas.getBoundingClientRect()
     ppath = [first]

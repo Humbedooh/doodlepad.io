@@ -20,7 +20,7 @@ lineWidth = 1.25
 lineColor = "rgba(0,0,0,1)"
 prevX = 0
 prevY = 0
-threshold = 0.015
+threshold = 0.0075
 drawing = false
 paths = []
 pathPushTime = new Date().getTime()
@@ -77,7 +77,7 @@ draw = () ->
     paths = [paths[paths.length-1]]
 
     now = new Date().getTime()
-    if (now - pathPushTime) > 250 or dataPaths.length > 10
+    if (now - pathPushTime) > 1000 or dataPaths.length > 10
       pushPaths()
   
 move = (e) ->

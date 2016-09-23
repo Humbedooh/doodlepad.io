@@ -36,7 +36,7 @@ prevX = 0;
 
 prevY = 0;
 
-threshold = 0.015;
+threshold = 0.0075;
 
 drawing = false;
 
@@ -115,7 +115,7 @@ draw = function() {
     dataPaths.push(ppath);
     paths = [paths[paths.length - 1]];
     now = new Date().getTime();
-    if ((now - pathPushTime) > 250 || dataPaths.length > 10) {
+    if ((now - pathPushTime) > 1000 || dataPaths.length > 10) {
       return pushPaths();
     }
   }

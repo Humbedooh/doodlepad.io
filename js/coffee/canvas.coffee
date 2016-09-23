@@ -105,6 +105,11 @@ move = (e) ->
 
 initCanvas = () ->
     canvas = get('doodlecanvas')
+    width = window.innerWidth - 100
+    height = parseInt(width / 2)
+    width = height * 2
+    canvas.setAttribute("width", width)
+    canvas.setAttribute("height", height)
     ctx = canvas.getContext("2d")
     canvas.addEventListener('mousemove', move)
     

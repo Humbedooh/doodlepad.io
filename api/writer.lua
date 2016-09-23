@@ -64,7 +64,10 @@ function handle(r)
                                         }
                                     }
                                 }
-                            }
+                            },
+                        sort = {
+                            { timestamp = 'asc' }
+                        }
                     }
                     last = now
                     local results = elastic.raw(query, 'draw')

@@ -20,7 +20,7 @@ lineWidth = 1.25
 lineColor = "rgba(0,0,0,1)"
 prevX = 0
 prevY = 0
-threshold = 0.0075
+threshold = 0.015
 drawing = false
 paths = []
 pathPushTime = new Date().getTime()
@@ -92,7 +92,7 @@ move = (e) ->
       px = (X / c.width)
       py = (Y / c.height)
       if ((Math.abs(prevX-px)) + (Math.abs(prevY-py))) > threshold
-        paths.push({x: px.toFixed(5), y: py.toFixed(5)})
+        paths.push({x: px.toFixed(4), y: py.toFixed(4)})
         prevX = px
         prevY = py
         if paths.length > 1

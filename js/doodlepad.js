@@ -36,7 +36,7 @@ prevX = 0;
 
 prevY = 0;
 
-threshold = 0.0075;
+threshold = 0.015;
 
 drawing = false;
 
@@ -136,8 +136,8 @@ move = function(e) {
       py = Y / c.height;
       if (((Math.abs(prevX - px)) + (Math.abs(prevY - py))) > threshold) {
         paths.push({
-          x: px.toFixed(5),
-          y: py.toFixed(5)
+          x: px.toFixed(4),
+          y: py.toFixed(4)
         });
         prevX = px;
         prevY = py;

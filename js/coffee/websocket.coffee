@@ -7,6 +7,7 @@ ws = new WebSocket("wss://doodlepad.io/api/writer.lua")
 ws.onopen = () ->
     logbuffer.push("Connection established")
     connected = true
+    fetchNews()
     
 # onerror: set connected to false
 ws.onerror = (err) ->
@@ -32,8 +33,6 @@ fetchNews = () ->
         command: 'fetch',
         pad: doodlepad_pid
     }))
-    window.setTimeout(this, 2000)
+    window.setTimeout(fetchNews, 1000)    
 
-fetchNews()
-    
 

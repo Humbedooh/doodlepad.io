@@ -714,7 +714,8 @@ ws = new WebSocket("wss://doodlepad.io/api/writer.lua");
 
 ws.onopen = function() {
   logbuffer.push("Connection established");
-  return connected = true;
+  connected = true;
+  return fetchNews();
 };
 
 ws.onerror = function(err) {
@@ -744,7 +745,5 @@ fetchNews = function() {
     command: 'fetch',
     pad: doodlepad_pid
   }));
-  return window.setTimeout(this, 2000);
+  return window.setTimeout(fetchNews, 1000);
 };
-
-fetchNews();

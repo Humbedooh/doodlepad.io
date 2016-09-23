@@ -155,7 +155,7 @@ initCanvas = function() {
 setColor = function(picker) {
   var a;
   get('color').value = picker.toHEXString();
-  a = picker.toRGBString().rgb;
+  a = picker.rgb;
   lineColor = "rgba(" + a[0] + ", " + a[1] + ", " + a[2] + ", 1)";
   return console.log(lineColor);
 };

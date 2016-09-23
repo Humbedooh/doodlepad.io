@@ -38,7 +38,7 @@ function handle(r)
                 if js.command == 'fetch' then
                     local now = r.clock()
                     query = {
-                        size = 1000,
+                        size = 5000,
                         query = {
                                 bool = {
                                     must = {
@@ -50,8 +50,8 @@ function handle(r)
                                         {
                                             range = {
                                                     timestamp = {
-                                                        from = last,
-                                                        to = now
+                                                        from = last-1,
+                                                        to = now+1
                                                         }
                                                 },
                                         },

@@ -52,6 +52,7 @@ pushPaths = function() {
     command: 'draw',
     fill: lineColor,
     color: lineColor,
+    width: lineWidth,
     type: 'pencil',
     path: dataPaths,
     pad: doodlepad_pid
@@ -64,15 +65,15 @@ pushPaths = function() {
 
 pencil = function(cmd) {
   var c, first, j, len, path, ref, results;
-  ctx.lineWidth = cmd.width;
-  ctx.fillStyle = cmd.fill;
-  ctx.strokeStyle = cmd.color;
   ref = cmd.path;
   results = [];
   for (j = 0, len = ref.length; j < len; j++) {
     paths = ref[j];
     if (paths.length > 1) {
       ctx.beginPath();
+      ctx.lineWidth = cmd.width;
+      ctx.fillStyle = cmd.fill;
+      ctx.strokeStyle = cmd.color;
       first = paths.shift();
       c = canvas.getBoundingClientRect();
       ctx.moveTo(first.x * c.width, first.y * c.height);
@@ -95,10 +96,10 @@ pencil = function(cmd) {
 
 draw = function() {
   var c, first, j, len, now, path, ppath;
-  ctx.lineWidth = lineWidth;
-  ctx.strokeStyle = lineColor;
   if (paths.length > 1) {
     ctx.beginPath();
+    ctx.lineWidth = lineWidth;
+    ctx.strokeStyle = lineColor;
     first = paths.shift();
     c = canvas.getBoundingClientRect();
     ppath = [first];

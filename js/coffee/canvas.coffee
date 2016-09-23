@@ -32,6 +32,7 @@ pushPaths = () ->
     command: 'draw'
     fill: lineColor,
     color: lineColor,
+    width: lineWidth,
     type: 'pencil',
     path: dataPaths,
     pad: doodlepad_pid
@@ -43,12 +44,12 @@ pushPaths = () ->
 
 
 pencil = (cmd) ->
-  ctx.lineWidth = cmd.width
-  ctx.fillStyle = cmd.fill
-  ctx.strokeStyle = cmd.color
   for paths in cmd.path
     if paths.length > 1
       ctx.beginPath()
+      ctx.lineWidth = cmd.width
+      ctx.fillStyle = cmd.fill
+      ctx.strokeStyle = cmd.color
       first = paths.shift()
       c = canvas.getBoundingClientRect()
       ctx.moveTo(first.x*c.width, first.y*c.height)
@@ -58,10 +59,10 @@ pencil = (cmd) ->
 
 
 draw = () ->
-  ctx.lineWidth = lineWidth
-  ctx.strokeStyle = lineColor
   if paths.length > 1
     ctx.beginPath()
+    ctx.lineWidth = lineWidth
+    ctx.strokeStyle = lineColor
     first = paths.shift()
     c = canvas.getBoundingClientRect()
     ppath = [first]

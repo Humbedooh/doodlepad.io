@@ -37,32 +37,34 @@ function handle(r)
                 if js.command == 'fetch' then
                     local now = r.clock()
                     query = {
-                        size = 1000,
-                            bool = {
-                                must = {
-                                    {
-                                        term = {
-                                            pad = js.pad
-                                        }
+                        query = {
+                            size = 1000,
+                                bool = {
+                                    must = {
+                                        {
+                                            term = {
+                                                pad = js.pad
+                                            }
+                                        },
+                                        {
+                                            range = {
+                                                    timestap = {
+                                                        from = last,
+                                                        to = now
+                                                        }
+                                                },
+                                        },
                                     },
-                                    {
-                                        range = {
-                                                timestap = {
-                                                    from = last,
-                                                    to = now
-                                                    }
-                                            },
-                                    },
-                                },
-                                must_not = {
-                                    {
-                                        term = {
-                                            writer = wid
+                                    must_not = {
+                                        {
+                                            term = {
+                                                writer = wid
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
+                    }
                     last = now
                     local results = elastic.raw(query, 'draw')
                     for res in pairs(results.hits.hits) do

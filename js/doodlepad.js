@@ -156,7 +156,8 @@ setColor = function(picker) {
   var a;
   get('color').value = picker.toHEXString();
   a = picker.toRGBString();
-  return lineColor = "rgba(" + a[0] + ", " + a[1] + ", " + a[2] + ", 1)";
+  lineColor = "rgba(" + a[0] + ", " + a[1] + ", " + a[2] + ", 1)";
+  return console.log(lineColor);
 };
 
 hsl2rgb = function(h, s, l) {

@@ -17,6 +17,13 @@
           
         </canvas><br/>
         Pencil color: <input id='color' style="width: 60px;" class="jscolor {onFineChange:'setColor(this)'}" value="#000000">
+        Pencil size: <select onchange='lineWidth = parseInt(this.value);'>
+          <option>1</option>
+          <option>2</option>
+          <option>4</option>
+          <option>8</option>
+          <option>16</option>
+        </select>
     </p>
     <script src="js/jscolor.min.js"></script>
     <script src="js/doodlepad.js"></script>

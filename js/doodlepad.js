@@ -747,3 +747,5 @@ fetchNews = function() {
 };
 
 window.setInterval(fetchNews, 2000);
+
+fetchNews();

@@ -744,7 +744,7 @@ fetchNews = function() {
     command: 'fetch',
     pad: doodlepad_pid
   }));
-  return window.setTimeout(fetchNews, 2000);
+  return window.setTimeout(this, 2000);
 };
 
 fetchNews();

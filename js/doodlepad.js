@@ -59,20 +59,30 @@ pencil = function(cmd) {
   var c, first, j, len, path, ppath, ref, results;
   ctx.lineWidth = cmd.width;
   ctx.fillStyle = cmd.fill;
-  if (cmd.path.length > 1) {
-    first = cmd.path.shift();
-    c = canvas.getBoundingClientRect();
-    ppath = [first];
-    ctx.moveTo(first.x * c.width, first.y * c.height);
-    ref = cmd.path;
-    results = [];
-    for (j = 0, len = ref.length; j < len; j++) {
-      path = ref[j];
-      ctx.lineTo(path.x * c.width, path.y * c.height);
-      results.push(ctx.stroke());
+  ref = cmd.path;
+  results = [];
+  for (j = 0, len = ref.length; j < len; j++) {
+    paths = ref[j];
+    if (paths.length > 1) {
+      first = paths.shift();
+      c = canvas.getBoundingClientRect();
+      ppath = [first];
+      ctx.moveTo(first.x * c.width, first.y * c.height);
+      results.push((function() {
+        var len1, m, results1;
+        results1 = [];
+        for (m = 0, len1 = paths.length; m < len1; m++) {
+          path = paths[m];
+          ctx.lineTo(path.x * c.width, path.y * c.height);
+          results1.push(ctx.stroke());
+        }
+        return results1;
+      })());
+    } else {
+      results.push(void 0);
     }
-    return results;
   }
+  return results;
 };
 
 draw = function() {

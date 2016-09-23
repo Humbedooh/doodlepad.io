@@ -40,14 +40,15 @@ pushPaths = () ->
 pencil = (cmd) ->
   ctx.lineWidth = cmd.width
   ctx.fillStyle = cmd.fill
-  if cmd.path.length > 1
-    first = cmd.path.shift()
-    c = canvas.getBoundingClientRect()
-    ppath = [first]
-    ctx.moveTo(first.x*c.width, first.y*c.height)
-    for path in cmd.path
-      ctx.lineTo(path.x*c.width, path.y*c.height)
-      ctx.stroke()
+  for paths in cmd.path
+    if paths.length > 1
+      first = paths.shift()
+      c = canvas.getBoundingClientRect()
+      ppath = [first]
+      ctx.moveTo(first.x*c.width, first.y*c.height)
+      for path in paths
+        ctx.lineTo(path.x*c.width, path.y*c.height)
+        ctx.stroke()
 
 
 draw = () ->

@@ -40,7 +40,7 @@ pathPushTime = new Date().getTime();
 dataPaths = [];
 
 pushPaths = function() {
-  var js;
+  var dp, js;
   js = {
     command: 'draw',
     fill: lineColor,
@@ -49,8 +49,10 @@ pushPaths = function() {
     path: dataPaths,
     pad: 'default'
   };
-  ws.send(JSON.stringify(js));
-  return dataPaths = [];
+  dp = JSON.stringify(js);
+  dataPaths = [];
+  ws.send(dp);
+  return console.log(dp);
 };
 
 draw = function() {

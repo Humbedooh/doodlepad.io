@@ -31,9 +31,11 @@ pushPaths = () ->
     path: dataPaths,
     pad: 'default'
   }
-  ws.send(JSON.stringify(js))
-  
+  dp = JSON.stringify(js)
   dataPaths = []
+  ws.send(dp)
+  console.log(dp)
+  
 
 draw = () ->
   ctx.lineWidth = lineWidth

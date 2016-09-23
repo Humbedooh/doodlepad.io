@@ -35,7 +35,20 @@ pushPaths = () ->
   dataPaths = []
   ws.send(dp)
   console.log(dp)
-  
+
+
+pencil = (cmd) ->
+  ctx.lineWidth = cmd.width
+  ctx.fillStyle = cmd.fill
+  if cmd.path.length > 1
+    first = cmd.path.shift()
+    c = canvas.getBoundingClientRect()
+    ppath = [first]
+    ctx.moveTo(first.x*c.width, first.y*c.height)
+    for path in cmd.path
+      ctx.lineTo(path.x*c.width, path.y*c.height)
+      ctx.stroke()
+
 
 draw = () ->
   ctx.lineWidth = lineWidth

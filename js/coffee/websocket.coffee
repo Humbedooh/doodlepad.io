@@ -21,4 +21,12 @@ ws.onclose = () ->
 # onmessage: responses from the server
 ws.onmessage = (event) ->
     msg = JSON.parse(event.data)
-   
+    if msg.command == 'draw'
+        if cmd.tool == 'pencil'
+            console.log("Got foreign pencil command")
+            pencil(cmd)
+
+fetchNews = () ->
+    ws.send('{"command": "fetch"}')
+    
+window.setInterval(fetchNews, 2000)

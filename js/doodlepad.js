@@ -715,9 +715,9 @@ ws.onmessage = function(event) {
   var msg;
   msg = JSON.parse(event.data);
   if (msg.command === 'draw') {
-    if (cmd.tool === 'pencil') {
+    if (msg.tool === 'pencil') {
       console.log("Got foreign pencil command");
-      return pencil(cmd);
+      return pencil(msg);
     }
   }
 };

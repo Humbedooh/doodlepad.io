@@ -22,9 +22,9 @@ ws.onclose = () ->
 ws.onmessage = (event) ->
     msg = JSON.parse(event.data)
     if msg.command == 'draw'
-        if cmd.tool == 'pencil'
+        if msg.tool == 'pencil'
             console.log("Got foreign pencil command")
-            pencil(cmd)
+            pencil(msg)
 
 fetchNews = () ->
     ws.send('{"command": "fetch"}')

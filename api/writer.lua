@@ -70,7 +70,10 @@ function handle(r)
                     for res in pairs(results.hits.hits) do
                         cmd = res._source
                         cmd.command = 'draw'
-                        r:wswrite(cmd)
+                        r:wswrite(JSON.encode(cmd))
+                    end
+                    if #results.hits.hits == 0 then
+                        r:wswrite(JSON.encode({okay=true, msg= "No new paths"}))
                     end
                 end
             else

@@ -1,7 +1,6 @@
 connected = false
 logbuffer = []
 # Establish websocket connection
-###
 ws = new WebSocket("wss://doodlepad.io/api/writer.lua")
 
 # onopen: set connected var to true (means we get to send stuff)
@@ -22,5 +21,4 @@ ws.onclose = () ->
 # onmessage: responses from the server
 ws.onmessage = (event) ->
     msg = JSON.parse(event.data)
-    
-###
+   

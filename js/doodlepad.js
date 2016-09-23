@@ -740,12 +740,11 @@ ws.onmessage = function(event) {
 };
 
 fetchNews = function() {
-  return ws.send(JSON.stringify({
+  ws.send(JSON.stringify({
     command: 'fetch',
     pad: doodlepad_pid
   }));
+  return window.setTimeout(fetchNews, 2000);
 };
-
-window.setInterval(fetchNews, 2000);
 
 fetchNews();

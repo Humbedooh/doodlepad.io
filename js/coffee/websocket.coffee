@@ -32,6 +32,8 @@ fetchNews = () ->
         command: 'fetch',
         pad: doodlepad_pid
     }))
-    
-window.setInterval(fetchNews, 2000)
+    window.setTimeout(fetchNews, 2000)
+
 fetchNews()
+    
+

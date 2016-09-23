@@ -21,6 +21,7 @@ ws.onclose = () ->
 # onmessage: responses from the server
 ws.onmessage = (event) ->
     msg = JSON.parse(event.data)
+    console.log(event.data)
     if msg.command == 'draw'
         if msg.tool == 'pencil'
             console.log("Got foreign pencil command")

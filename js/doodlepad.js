@@ -714,6 +714,7 @@ ws.onclose = function() {
 ws.onmessage = function(event) {
   var msg;
   msg = JSON.parse(event.data);
+  console.log(event.data);
   if (msg.command === 'draw') {
     if (msg.tool === 'pencil') {
       console.log("Got foreign pencil command");

@@ -37,8 +37,8 @@ function handle(r)
                 if js.command == 'fetch' then
                     local now = r.clock()
                     query = {
+                        size = 1000,
                         query = {
-                            size = 1000,
                                 bool = {
                                     must = {
                                         {

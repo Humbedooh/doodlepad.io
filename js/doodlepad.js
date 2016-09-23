@@ -62,7 +62,7 @@ pushPaths = function() {
     dataPaths = [];
     ws.send(dp);
   }
-  return pathPushTime = now;
+  return pathPushTime = new Date().getTime();
 };
 
 pencil = function(cmd) {
@@ -116,8 +116,7 @@ draw = function() {
     paths = [paths[paths.length - 1]];
     now = new Date().getTime();
     if ((now - pathPushTime) > 250 || dataPaths.length > 10) {
-      pushPaths();
-      return pathPushTime = now;
+      return pushPaths();
     }
   }
 };

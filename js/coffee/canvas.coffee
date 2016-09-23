@@ -41,7 +41,7 @@ pushPaths = () ->
     dp = JSON.stringify(js)
     dataPaths = []
     ws.send(dp)
-  pathPushTime = now
+  pathPushTime = new Date().getTime()
 
 
 pencil = (cmd) ->
@@ -79,7 +79,6 @@ draw = () ->
     now = new Date().getTime()
     if (now - pathPushTime) > 250 or dataPaths.length > 10
       pushPaths()
-      pathPushTime = now
   
 move = (e) ->
   if mouseDown > 0

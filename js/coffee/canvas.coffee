@@ -115,3 +115,7 @@ setColor = (picker) ->
     lineColor = "rgba(#{r}, #{g}, #{b}, 1)"
     console.log(lineColor)
     
+    
+download = () ->
+    dt = canvas.toDataURL('image/png')
+    location.href = dt

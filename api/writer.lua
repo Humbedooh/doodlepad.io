@@ -6,6 +6,8 @@ function handle(r)
     if r:wsupgrade() then
         -- Then, we'll write something to the client:
         r:wswrite(JSON.encode({okay = true}))
+        local wid = r:sha1(math.random(1,99999999) .. r.clock() .. r.useragent_ip)
+        local last = 0
         
         while true do
             -- Receive a line (frame) from the client:
@@ -24,10 +26,48 @@ function handle(r)
                         width = js.width or 1,
                         tool = "pencil",
                         path = js.path or {},
-                        timestamp = r.clock()
+                        timestamp = r.clock(),
+                        writer = wid
                     }
                     elastic.index(r, nil, 'draw', doc)
                     r:wswrite(JSON.encode{okay = true, message = "command saved"})
+                end
+                if js.command == 'fetch' then
+                    local now = r.clock()
+                    query = {
+                        size = 1000,
+                            bool = {
+                                must = {
+                                    {
+                                        term = {
+                                            pad = js.pad
+                                        }
+                                    },
+                                    {
+                                        range = {
+                                                timestap = {
+                                                    from = last,
+                                                    to = now
+                                                    }
+                                            },
+                                    },
+                                },
+                                must_not = {
+                                    {
+                                        term = {
+                                            writer = wid
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    last = now
+                    local results = elastic.raw(query, 'draw')
+                    for res in pairs(results.hits.hits) do
+                        cmd = res._source
+                        cmd.command = 'draw'
+                        r:wswrite(cmd)
+                    end
                 end
             else
                 -- check if client disconnected?

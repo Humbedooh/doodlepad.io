@@ -50,8 +50,8 @@ function handle(r)
                                         {
                                             range = {
                                                     timestamp = {
-                                                        from = last-1,
-                                                        to = now+1
+                                                        from = last-2,
+                                                        to = now+2
                                                         }
                                                 },
                                         },

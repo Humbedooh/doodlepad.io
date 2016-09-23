@@ -24,6 +24,7 @@ threshold = 0.0075
 drawing = false
 paths = []
 pathPushTime = new Date().getTime()
+lastDraw = 0
 
 dataPaths = []
 
@@ -77,6 +78,7 @@ draw = () ->
     paths = [paths[paths.length-1]]
 
     now = new Date().getTime()
+    lastDraw = now
     if (now - pathPushTime) > 1000 or dataPaths.length > 10
       pushPaths()
   
@@ -86,6 +88,7 @@ move = (e) ->
       drawing = true
       paths = []
     if drawing
+      now = new Date().getTime()
       c = canvas.getBoundingClientRect()
       X = e.pageX - c.left + document.body.scrollLeft
       Y = e.pageY - c.top + document.body.scrollTop
@@ -95,7 +98,7 @@ move = (e) ->
         paths.push({x: px.toFixed(4), y: py.toFixed(4)})
         prevX = px
         prevY = py
-        if paths.length > 1
+        if paths.length > 1 and (now-lastDraw) > 100
           draw()
   else
     paths = []

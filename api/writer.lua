@@ -68,7 +68,7 @@ function handle(r)
                     }
                     last = now
                     local results = elastic.raw(query, 'draw')
-                    for res in pairs(results.hits.hits) do
+                    for k, res in pairs(results.hits.hits) do
                         cmd = res._source
                         cmd.command = 'draw'
                         r:wswrite(JSON.encode(cmd))

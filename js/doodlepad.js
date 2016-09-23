@@ -134,8 +134,8 @@ move = function(e) {
     if (drawing) {
       now = new Date().getTime();
       c = canvas.getBoundingClientRect();
-      X = e.pageX - c.left + document.body.scrollLeft;
-      Y = e.pageY - c.top + document.body.scrollTop;
+      X = e.pageX - c.left - document.body.scrollLeft;
+      Y = e.pageY - c.top - (window.pageYOffset || document.body.scrollTop);
       px = X / c.width;
       py = Y / c.height;
       if (((Math.abs(prevX - px)) + (Math.abs(prevY - py))) > threshold) {

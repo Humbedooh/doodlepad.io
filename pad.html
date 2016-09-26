@@ -10,14 +10,14 @@
 
     
   </head>
-  <body style="background: #D8E8FF;" onload="initCanvas();">
+  <body style="background: #D8E8FF;" onload="initCanvas(); get('pw').selectedIndex=0; get('color').value='#000000';">
     <p style="text-align: center;">
         <img src="images/logo.png" width="300"/><br/>
         <canvas id="doodlecanvas" width="1000" height="500" style="cursor: url(./images/pbrush.png), pointer; background: #FFF; border: 2px inset #333;">
           
         </canvas><br/>
         Pencil color: <input id='color' style="width: 60px;" class="jscolor {onFineChange:'setColor(this)'}" value="#000000"><br/>
-        Pencil size: <select onchange='lineWidth = parseInt(this.value);'>
+        Pencil size: <select id='pw' onchange='lineWidth = parseInt(this.value);'>
           <option>1</option>
           <option>2</option>
           <option>4</option>

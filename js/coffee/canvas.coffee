@@ -18,6 +18,7 @@ canvas = null
 ctx = null
 lineWidth = 1.25
 lineColor = "rgba(0,0,0,1)"
+lineCap = 'round'
 prevX = 0
 prevY = 0
 threshold = 0.005
@@ -52,6 +53,7 @@ pencil = (cmd) ->
   for paths in cmd.path
     if paths.length > 1
       ctx.beginPath()
+      ctx.lineCap = lineCap
       ctx.lineWidth = cmd.width
       ctx.fillStyle = cmd.fill
       ctx.strokeStyle = cmd.color
@@ -66,6 +68,7 @@ pencil = (cmd) ->
 draw = () ->
   if paths.length > 1
     ctx.beginPath()
+    ctx.lineCap = lineCap
     ctx.lineWidth = lineWidth
     ctx.strokeStyle = lineColor
     first = paths.shift()

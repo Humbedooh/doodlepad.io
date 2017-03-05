@@ -1,26 +1,31 @@
 mouseDown = 0;
+isPad = false
 
 document.body.ontouchstart =(e) ->
+  isPad = true
   e.preventDefault()
   ++mouseDown;
   
 document.body.onmousedown = (e) ->
-  ++mouseDown;
+  if not isPad
+    ++mouseDown;
     
 document.body.onmouseup = (e) ->
-  --mouseDown;
-  if mouseDown <= 0
-    drawing = false
-    draw()
-    paths = []
+  if not isPad
+    --mouseDown;
+    if mouseDown <= 0
+      drawing = false
+      draw()
+      paths = []
 
 document.body.ontouchend = (e) ->
-  e.preventDefault()
-  --mouseDown;
-  if mouseDown <= 0
-    drawing = false
-    draw()
-    paths = []
+  if isPad
+    e.preventDefault()
+    --mouseDown;
+    if mouseDown <= 0
+      drawing = false
+      draw()
+      paths = []
 
 
 doodlepad_pid = location.search.substr(1)

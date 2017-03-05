@@ -119,10 +119,11 @@ move = (e) ->
       pageX = e.pageX
       pageY = e.pageY
       if e.targetTouches
-        pageX = e.targetTouches[0].pageX
-        pageY = e.targetTouches[0].pageY
-      X = pageX - c.left - document.body.scrollLeft
-      Y = pageY - c.top - (window.pageYOffset || document.body.scrollTop)
+        X = e.targetTouches[0].pageX
+        Y = e.targetTouches[0].pageY
+      else
+        X = pageX - c.left - document.body.scrollLeft
+        Y = pageY - c.top - (window.pageYOffset || document.body.scrollTop)
       px = (X / c.width)
       py = (Y / c.height)
       if ((Math.abs(prevX-px)) + (Math.abs(prevY-py))) > threshold

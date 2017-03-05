@@ -116,6 +116,10 @@ move = (e) ->
     if drawing
       now = new Date().getTime()
       c = canvas.getBoundingClientRect()
+      if e.targetTouches
+        e.pageX = e.targetTouches[0].pageX
+        e.pageY = e.targetTouches[0].pageY
+        
       X = e.pageX - c.left - document.body.scrollLeft
       Y = e.pageY - c.top - (window.pageYOffset || document.body.scrollTop)
       px = (X / c.width)

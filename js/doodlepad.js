@@ -33,14 +33,16 @@ document.body.onmouseup = function(e) {
 
 document.body.ontouchend = function(e) {
   var drawing, paths;
-  if (drawing) {
-    e.preventDefault();
-  }
-  --mouseDown;
-  if (mouseDown <= 0) {
-    drawing = false;
-    draw();
-    return paths = [];
+  if (isPad) {
+    --mouseDown;
+    if (mouseDown <= 0) {
+      drawing = false;
+      draw();
+      paths = [];
+    }
+    if (drawing) {
+      return e.preventDefault();
+    }
   }
 };
 

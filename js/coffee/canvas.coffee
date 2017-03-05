@@ -20,14 +20,14 @@ document.body.onmouseup = (e) ->
       paths = []
 
 document.body.ontouchend = (e) ->
-  if drawing
-    e.preventDefault()
-  --mouseDown;
-  if mouseDown <= 0
-    drawing = false
-    draw()
-    paths = []
-
+  if isPad
+    --mouseDown;
+    if mouseDown <= 0
+      drawing = false
+      draw()
+      paths = []
+    if drawing
+      e.preventDefault()
 
 doodlepad_pid = location.search.substr(1)
 if doodlepad_pid.length < 2

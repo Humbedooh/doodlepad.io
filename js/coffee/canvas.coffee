@@ -1,4 +1,8 @@
 mouseDown = 0;
+
+document.body.ontouchstart =(e) ->
+  ++mouseDown;
+  
 document.body.onmousedown = (e) ->
   ++mouseDown;
     
@@ -8,6 +12,14 @@ document.body.onmouseup = (e) ->
     drawing = false
     draw()
     paths = []
+
+document.body.ontouchend = (e) ->
+  --mouseDown;
+  if mouseDown <= 0
+    drawing = false
+    draw()
+    paths = []
+
 
 doodlepad_pid = location.search.substr(1)
 if doodlepad_pid.length < 2
@@ -126,6 +138,7 @@ initCanvas = () ->
     window.onresize = sizeCanvas
     ctx = canvas.getContext("2d")
     canvas.addEventListener('mousemove', move)
+    canvas.addEventListener('touchmove', move)
     sizeCanvas()
     
     

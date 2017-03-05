@@ -14,8 +14,9 @@
     <p style="text-align: center;">
         <canvas id="doodlecanvas" width="1000" height="500" style="cursor: url(./images/pbrush.png), pointer; background: #FFF; border: 2px inset #333;">
           
-        </canvas><br/>
-        Pencil color: <input id='color' style="width: 60px;" class="jscolor {onFineChange:'setColor(this)'}" style='background: #000;' value="#000000"><br/>
+        </canvas>
+        <p style="font-family: sans-serif; font-size: 10pt;">
+        Pencil color: <input id='color' style="width: 60px;" class="jscolor {onFineChange:'setColor(this)'}" style='background: #000;' value="#000000"> &nbsp; 
         Pencil size: <select id='pw' onchange='lineWidth = parseInt(this.value);'>
           <option>1</option>
           <option>2</option>
@@ -25,6 +26,7 @@
         </select>
         <br/>
         [ <a href="pad.html">Make a new (blank) pad</a> ] - [ <a href='javascript:void(download());'>Download as PNG</a> ]
+        </p>
     </p>
     <script src="js/jscolor.min.js"></script>
     <script src="js/doodlepad.js"></script>

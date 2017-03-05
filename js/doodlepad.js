@@ -4,6 +4,7 @@ var API, app, canvas, cog, ctx, dataPaths, doodlepad_pid, download, draw, drawin
 mouseDown = 0;
 
 document.body.ontouchstart = function(e) {
+  e.preventDefault();
   return ++mouseDown;
 };
 
@@ -23,6 +24,7 @@ document.body.onmouseup = function(e) {
 
 document.body.ontouchend = function(e) {
   var drawing, paths;
+  e.preventDefault();
   --mouseDown;
   if (mouseDown <= 0) {
     drawing = false;
@@ -148,6 +150,7 @@ draw = function() {
 
 move = function(e) {
   var X, Y, c, now, px, py;
+  e.preventDefault();
   if (mouseDown > 0) {
     if (drawing === false) {
       drawing = true;

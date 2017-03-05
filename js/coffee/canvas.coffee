@@ -1,6 +1,7 @@
 mouseDown = 0;
 
 document.body.ontouchstart =(e) ->
+  e.preventDefault()
   ++mouseDown;
   
 document.body.onmousedown = (e) ->
@@ -14,6 +15,7 @@ document.body.onmouseup = (e) ->
     paths = []
 
 document.body.ontouchend = (e) ->
+  e.preventDefault()
   --mouseDown;
   if mouseDown <= 0
     drawing = false
@@ -101,6 +103,7 @@ draw = () ->
       pushPaths()
   
 move = (e) ->
+  e.preventDefault()
   if mouseDown > 0
     if drawing == false
       drawing = true

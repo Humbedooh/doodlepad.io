@@ -3,7 +3,8 @@ isPad = false
 
 document.body.ontouchstart =(e) ->
   isPad = true
-  e.preventDefault()
+  if drawing:
+    e.preventDefault()
   ++mouseDown;
   
 document.body.onmousedown = (e) ->
@@ -20,7 +21,8 @@ document.body.onmouseup = (e) ->
 
 document.body.ontouchend = (e) ->
   if isPad
-    e.preventDefault()
+    if drawing:
+      e.preventDefault()
     --mouseDown;
     if mouseDown <= 0
       drawing = false

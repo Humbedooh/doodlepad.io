@@ -124,7 +124,9 @@ move = (e) ->
 
 sizeCanvas = () ->
     canvas = get('doodlecanvas')
-    height = parseInt(window.innerHeight - 240)
+    height = parseInt(window.innerHeight - 100)
+    if height < 100
+      height = 100
     width = height * 2
     canvas.setAttribute("width", width)
     canvas.setAttribute("height", height)

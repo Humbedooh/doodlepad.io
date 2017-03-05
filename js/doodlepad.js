@@ -171,8 +171,8 @@ move = function(e) {
       pageX = e.pageX;
       pageY = e.pageY;
       if (e.targetTouches) {
-        X = e.targetTouches[0].pageX;
-        Y = e.targetTouches[0].pageY;
+        X = e.targetTouches[0].pageX - c.left;
+        Y = e.targetTouches[0].pageY - c.top;
       } else {
         X = pageX - c.left - document.body.scrollLeft;
         Y = pageY - c.top - (window.pageYOffset || document.body.scrollTop);

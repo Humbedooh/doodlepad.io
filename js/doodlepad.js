@@ -98,7 +98,7 @@ pushPaths = function() {
 };
 
 pencil = function(cmd) {
-  var c, first, j, len, path, ref, results;
+  var c, first, j, len, len1, m, path, ref, results;
   ref = cmd.path;
   results = [];
   for (j = 0, len = ref.length; j < len; j++) {
@@ -112,16 +112,12 @@ pencil = function(cmd) {
       first = paths.shift();
       c = canvas.getBoundingClientRect();
       ctx.moveTo(first.x * c.width, first.y * c.height);
-      results.push((function() {
-        var len1, m, results1;
-        results1 = [];
-        for (m = 0, len1 = paths.length; m < len1; m++) {
-          path = paths[m];
-          ctx.lineTo(path.x * c.width, path.y * c.height);
-          results1.push(ctx.stroke());
-        }
-        return results1;
-      })());
+      for (m = 0, len1 = paths.length; m < len1; m++) {
+        path = paths[m];
+        ctx.lineTo(path.x * c.width, path.y * c.height);
+        ctx.stroke();
+      }
+      results.push(ctx.closePath());
     } else {
       results.push(void 0);
     }
@@ -150,6 +146,7 @@ draw = function() {
     paths = [paths[paths.length - 1]];
     now = new Date().getTime();
     lastDraw = now;
+    ctx.closePath();
     if ((now - pathPushTime) > 1000 || dataPaths.length > 10) {
       return pushPaths();
     }

@@ -80,6 +80,7 @@ pencil = (cmd) ->
       for path in paths
         ctx.lineTo(path.x*c.width, path.y*c.height)
         ctx.stroke()
+      ctx.closePath()
 
 
 draw = () ->
@@ -102,6 +103,7 @@ draw = () ->
 
     now = new Date().getTime()
     lastDraw = now
+    ctx.closePath();
     if (now - pathPushTime) > 1000 or dataPaths.length > 10
       pushPaths()
   

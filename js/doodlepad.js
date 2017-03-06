@@ -194,10 +194,12 @@ sizeCanvas = function() {
   var height, j, len, mem, results, width;
   canvas = get('doodlecanvas');
   height = parseInt(window.innerHeight - 100);
-  if (height < 100) {
-    height = 100;
+  width = parseInt(window.innerWidth - 60);
+  if (width > height) {
+    width = height * 2;
+  } else {
+    height = width / 2;
   }
-  width = height * 2;
   canvas.setAttribute("width", width);
   canvas.setAttribute("height", height);
   results = [];

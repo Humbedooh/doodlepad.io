@@ -5,6 +5,7 @@ document.body.ontouchstart =(e) ->
   isPad = true
   if drawing
     e.preventDefault()
+  paths = []
   ++mouseDown;
   
 document.body.onmousedown = (e) ->

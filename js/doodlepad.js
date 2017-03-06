@@ -6,10 +6,12 @@ mouseDown = 0;
 isPad = false;
 
 document.body.ontouchstart = function(e) {
+  var paths;
   isPad = true;
   if (drawing) {
     e.preventDefault();
   }
+  paths = [];
   return ++mouseDown;
 };
 

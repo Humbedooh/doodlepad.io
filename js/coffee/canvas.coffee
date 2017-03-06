@@ -1,11 +1,24 @@
 mouseDown = 0;
 isPad = false
+ 
+canvas = null
+ctx = null
+lineWidth = 1.25
+lineColor = "rgba(0,0,0,1)"
+lineCap = 'round'
+prevX = 0
+prevY = 0
+threshold = 0.005
+drawing = false
+paths = []
+pathPushTime = new Date().getTime()
+lastDraw = 0
+memory = []
 
 document.body.ontouchstart =(e) ->
   isPad = true
   if drawing
     e.preventDefault()
-  paths = []
   ++mouseDown;
   
 document.body.onmousedown = (e) ->
@@ -31,20 +44,7 @@ doodlepad_pid = location.search.substr(1)
 if doodlepad_pid.length < 2
     doodlepad_pid = parseInt(Math.random() * 999999999).toString(16)
     location.href = '?' + doodlepad_pid
-    
-canvas = null
-ctx = null
-lineWidth = 1.25
-lineColor = "rgba(0,0,0,1)"
-lineCap = 'round'
-prevX = 0
-prevY = 0
-threshold = 0.005
-drawing = false
-paths = []
-pathPushTime = new Date().getTime()
-lastDraw = 0
-memory = []
+   
 
 dataPaths = []
 

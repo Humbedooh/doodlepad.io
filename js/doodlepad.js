@@ -5,51 +5,6 @@ mouseDown = 0;
 
 isPad = false;
 
-document.body.ontouchstart = function(e) {
-  var paths;
-  isPad = true;
-  if (drawing) {
-    e.preventDefault();
-  }
-  paths = [];
-  return ++mouseDown;
-};
-
-document.body.onmousedown = function(e) {
-  if (!isPad) {
-    return ++mouseDown;
-  }
-};
-
-document.body.onmouseup = function(e) {
-  var drawing, paths;
-  if (!isPad) {
-    --mouseDown;
-    if (mouseDown <= 0) {
-      drawing = false;
-      draw();
-      return paths = [];
-    }
-  }
-};
-
-document.body.ontouchend = function(e) {
-  var drawing, paths;
-  if (isPad) {
-    mouseDown = 0;
-    drawing = false;
-    draw();
-    return paths = [];
-  }
-};
-
-doodlepad_pid = location.search.substr(1);
-
-if (doodlepad_pid.length < 2) {
-  doodlepad_pid = parseInt(Math.random() * 999999999).toString(16);
-  location.href = '?' + doodlepad_pid;
-}
-
 canvas = null;
 
 ctx = null;
@@ -75,6 +30,47 @@ pathPushTime = new Date().getTime();
 lastDraw = 0;
 
 memory = [];
+
+document.body.ontouchstart = function(e) {
+  isPad = true;
+  if (drawing) {
+    e.preventDefault();
+  }
+  return ++mouseDown;
+};
+
+document.body.onmousedown = function(e) {
+  if (!isPad) {
+    return ++mouseDown;
+  }
+};
+
+document.body.onmouseup = function(e) {
+  if (!isPad) {
+    --mouseDown;
+    if (mouseDown <= 0) {
+      drawing = false;
+      draw();
+      return paths = [];
+    }
+  }
+};
+
+document.body.ontouchend = function(e) {
+  if (isPad) {
+    mouseDown = 0;
+    drawing = false;
+    draw();
+    return paths = [];
+  }
+};
+
+doodlepad_pid = location.search.substr(1);
+
+if (doodlepad_pid.length < 2) {
+  doodlepad_pid = parseInt(Math.random() * 999999999).toString(16);
+  location.href = '?' + doodlepad_pid;
+}
 
 dataPaths = [];
 
